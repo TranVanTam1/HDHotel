@@ -73,5 +73,6 @@ class RoomTypeController extends Controller
             'message' => 'Loại phòng đã được xóa thành công!'
         ]);
     }
+    
    
 }
