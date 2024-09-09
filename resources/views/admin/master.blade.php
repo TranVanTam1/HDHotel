@@ -99,10 +99,10 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Phòng <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="/admin/type-product/danhsach">Danh sách phòng</a>
+                                    <a href="{{ route('rooms.index')}}">Danh sách phòng</a>
                                 </li>
                                 <li>
-                                    <a href="">Thêm mới phòng</a>
+                                    <a href="{{ route('rooms.create')}}">Thêm mới phòng</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

@@ -31,7 +31,7 @@
                                 <td>{{ $roomType->updated_at }}</td>
                                 <td>
                                     <a href="{{ route('roomTypes.edit', $roomType->id) }}" class="btn btn-warning btn-sm">Sửa</a>
-                                    <form action="{{ route('roomTypes.destroy', $roomType->id) }}" method="POST" style="display:inline;">
+                                    <form action="{{ route('roomTypes.destroy', $roomType->id) }}" method="POST" onsubmit="return confirm('Bạn có chắc chắn muốn xóa phòng này không?');" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm">Xóa</button>

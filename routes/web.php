@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomTypeController;
 
 /*
@@ -18,6 +19,7 @@ use App\Http\Controllers\RoomTypeController;
 Route::get('/', function () {
     return view('page.index');
 });
+Route::get('/admin', [RoomTypeController::class, 'index'])->name('roomTypes.index');
 
 Route::get('/admin/list-room-types', [RoomTypeController::class, 'index'])->name('roomTypes.index');
 
@@ -37,3 +39,7 @@ Route::put('room-types/{id}', [RoomTypeController::class, 'update'])->name('room
 
 // Route xử lý việc xóa loại phòng
 Route::delete('/room-types/{id}', [RoomTypeController::class, 'destroy'])->name('roomTypes.destroy');
+
+
+
+Route::resource('rooms', RoomController::class);
