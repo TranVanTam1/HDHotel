@@ -1,0 +1,601 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Sep 30, 2024 at 03:44 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.1.25
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `dbhoangdunghotel`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bookingdetails`
+--
+
+CREATE TABLE `bookingdetails` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `BookingID` bigint(20) UNSIGNED NOT NULL,
+  `NumberOfPeople` int(11) NOT NULL,
+  `CCCD` varchar(255) DEFAULT NULL,
+  `NumberOfNights` int(11) NOT NULL,
+  `RoomRate` decimal(10,2) DEFAULT NULL,
+  `Discount` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `TotalRoomCost` decimal(10,2) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bookings`
+--
+
+CREATE TABLE `bookings` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `CustomerID` bigint(20) UNSIGNED NOT NULL,
+  `RoomID` bigint(20) UNSIGNED NOT NULL,
+  `BookingDate` date NOT NULL,
+  `CheckInDate` date NOT NULL,
+  `CheckOutDate` date NOT NULL,
+  `TotalAmount` decimal(10,2) DEFAULT NULL,
+  `BookingStatus` enum('Confirmed','Pending','Cancelled') NOT NULL DEFAULT 'Pending',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customers`
+--
+
+CREATE TABLE `customers` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `UserID` bigint(20) UNSIGNED NOT NULL,
+  `FullName` varchar(255) NOT NULL,
+  `Phone` varchar(255) DEFAULT NULL,
+  `Address` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`id`, `UserID`, `FullName`, `Phone`, `Address`, `created_at`, `updated_at`) VALUES
+(5, 27, 'Lê Sĩ Nhật', '0327256830', 'Đà Nẵng', '2024-09-23 01:50:07', '2024-09-23 01:50:07'),
+(6, 29, 'Hồ Thị Ngọc Trâm', '0775554281', 'Đà Nẵng', '2024-09-26 23:58:23', '2024-09-26 23:58:23'),
+(7, 30, 'Trần Văn Tâm', '0332541965', 'Đà Nẵng', '2024-09-27 00:02:20', '2024-09-27 00:02:20');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `failed_jobs`
+--
+
+CREATE TABLE `failed_jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `uuid` varchar(255) NOT NULL,
+  `connection` text NOT NULL,
+  `queue` text NOT NULL,
+  `payload` longtext NOT NULL,
+  `exception` longtext NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `invoices`
+--
+
+CREATE TABLE `invoices` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `BookingID` bigint(20) UNSIGNED NOT NULL,
+  `InvoiceDate` date NOT NULL,
+  `TotalAmount` decimal(10,2) DEFAULT NULL,
+  `PaymentStatus` enum('Paid','Unpaid') NOT NULL DEFAULT 'Unpaid',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(25, '2014_10_12_000000_create_users_table', 1),
+(26, '2014_10_12_100000_create_password_reset_tokens_table', 1),
+(27, '2019_08_19_000000_create_failed_jobs_table', 1),
+(28, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(29, '2024_08_26_091013_create_roomtypes_table', 1),
+(30, '2024_08_26_091111_create_rooms_table', 1),
+(31, '2024_09_13_073002_create_roles_table', 2),
+(33, '2024_09_13_073037_create_positions_table', 3),
+(34, '2024_09_13_075012_create_roles_table', 4),
+(35, '2024_09_13_090250_create_positions_table', 5),
+(36, '2024_09_13_092117_create_roles_table', 6),
+(37, '2024_09_13_092411_create_positions_table', 7),
+(38, '2024_09_16_091256_create_customers_table', 8),
+(39, '2024_09_16_091830_create_customers_table', 9),
+(40, '2024_09_16_091913_create_customers_table', 10),
+(41, '2024_09_24_033833_create_staff_table', 11),
+(42, '2024_09_24_035231_create_bookings_table', 12),
+(43, '2024_09_24_035608_create_bookingdetails_table', 13),
+(44, '2024_09_24_035703_create_invoices_table', 14),
+(45, '2024_09_24_035752_create_services_table', 15);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_reset_tokens`
+--
+
+CREATE TABLE `password_reset_tokens` (
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `personal_access_tokens`
+--
+
+CREATE TABLE `personal_access_tokens` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `abilities` text DEFAULT NULL,
+  `last_used_at` timestamp NULL DEFAULT NULL,
+  `expires_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `positions`
+--
+
+CREATE TABLE `positions` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `PositionName` varchar(255) NOT NULL,
+  `Description` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `positions`
+--
+
+INSERT INTO `positions` (`id`, `PositionName`, `Description`, `created_at`, `updated_at`) VALUES
+(1, 'Lễ tân', 'Phụ trách tiếp đón khách và xử lý yêu cầu.', NULL, NULL),
+(2, 'Quản lí', 'Quản lý tài chính và kế toán của khách sạn.', NULL, NULL),
+(3, 'Nhân viên', 'Nhân viên chung của khách sạn, có thể đảm nhiệm nhiều vị trí khác nhau.', NULL, NULL),
+(4, 'giám đốc', 'điều hành khách sạn', '2024-09-13 02:36:33', '2024-09-13 02:36:33');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `RoleName` varchar(255) NOT NULL,
+  `Description` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `RoleName`, `Description`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'Quản trị viên hệ thống.', NULL, NULL),
+(2, 'staff\r\n', 'Người dùng là nhân viên, đăng nhập dể xem thông tin của mình.', NULL, NULL),
+(4, 'Khách hàng', 'Người dùng dịch vụ của khách sạn, có quyền đặt phòng và quản lý đặt phòng cá nhân.', '2024-09-13 02:42:49', '2024-09-13 02:42:49');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rooms`
+--
+
+CREATE TABLE `rooms` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `RoomNumber` varchar(255) NOT NULL,
+  `RoomTypeID` bigint(20) UNSIGNED NOT NULL,
+  `RoomPrice` decimal(10,2) NOT NULL,
+  `Status` varchar(255) NOT NULL,
+  `Capacity` int(11) NOT NULL,
+  `Description` text DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `rooms`
+--
+
+INSERT INTO `rooms` (`id`, `RoomNumber`, `RoomTypeID`, `RoomPrice`, `Status`, `Capacity`, `Description`, `image`, `created_at`, `updated_at`) VALUES
+(19, '1001', 1, 4500000.00, 'Available', 4, 'svfd', 'anh2.jpg', '2024-09-27 01:40:30', '2024-09-27 01:40:30'),
+(20, '1002', 2, 9999999.00, 'Available', 3, 'vvv', 'anh4.jpg', '2024-09-27 01:41:21', '2024-09-27 01:41:21'),
+(21, '1003', 3, 66666.00, 'Available', 7, 'rrrr', 'anh1.jpg', '2024-09-27 01:41:42', '2024-09-27 01:41:42');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roomtypes`
+--
+
+CREATE TABLE `roomtypes` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `RoomTypeName` varchar(255) NOT NULL,
+  `Description` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `roomtypes`
+--
+
+INSERT INTO `roomtypes` (`id`, `RoomTypeName`, `Description`, `created_at`, `updated_at`) VALUES
+(1, 'Phòng Senior', 'A single room with one bed.', NULL, '2024-09-27 01:50:55'),
+(2, 'Phòng Triple', 'A room with a double bed.', NULL, '2024-09-27 01:52:32'),
+(3, 'Phòng Connecting', 'A luxurious suite with multiple rooms.', NULL, '2024-09-27 01:52:55'),
+(4, 'Phòng Deluxe', 'Phòng Deluxe', '2024-09-27 01:54:22', '2024-09-27 01:54:22');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `services`
+--
+
+CREATE TABLE `services` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `ServiceName` varchar(255) NOT NULL,
+  `Price` decimal(10,2) NOT NULL,
+  `ServiceDate` date NOT NULL,
+  `BookingID` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `staff`
+--
+
+CREATE TABLE `staff` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `UserID` bigint(20) UNSIGNED NOT NULL,
+  `FullName` varchar(255) NOT NULL,
+  `PositionID` bigint(20) UNSIGNED NOT NULL,
+  `Phone` varchar(255) DEFAULT NULL,
+  `HireDate` date DEFAULT NULL,
+  `Salary` decimal(10,2) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `staff`
+--
+
+INSERT INTO `staff` (`id`, `UserID`, `FullName`, `PositionID`, `Phone`, `HireDate`, `Salary`, `created_at`, `updated_at`) VALUES
+(4, 28, 'Lê Sĩ Nhật', 3, '0327256830', '2024-09-25', 10000000.00, '2024-09-23 22:03:08', '2024-09-23 22:06:43');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `RoleID` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `email`, `password`, `RoleID`, `created_at`, `updated_at`) VALUES
+(7, 'admin1@gmail.com', '$2y$12$gGLZFNiSu.z8UEgieuynTO08WV.ugX/VbnLJ0TlfgwqBK8Q8iVXuG', 1, '2024-09-16 02:48:37', '2024-09-16 02:48:37'),
+(8, 'admin2@gmail.com', '$2y$12$caNsU87ml7NpytNuu4EbiORY.DGVvbJMkAvxK7ihVzpluK8LRuvxu', 2, '2024-09-16 02:48:37', '2024-09-16 02:48:37'),
+(9, 'admin3@gmail.com', '$2y$12$RB7Q8nlDa.mDObWdmrtQKugAp7VCo3k3iotxL5uh8lEoevcYYFNC.', 3, '2024-09-16 02:48:38', '2024-09-16 02:48:38'),
+(14, 'vantamtran44@gmail.com', '$2y$12$BEpE6iOvvKBmmzg2XE2.betaywF.9NSOfnW13AwNjWTuuibh9n66O', 3, '2024-09-19 02:38:13', '2024-09-19 02:38:13'),
+(27, 'lsnhat91@gmail.com', '$2y$12$lkYE6wZPINSZ9MApoVSbWuY59pF8cVh5Lit9yREkL8nizNGkWVji.', 3, '2024-09-23 01:50:07', '2024-09-23 01:50:07'),
+(28, 'nhanvien1@gmail.com', '$2y$12$6SNq/sdA4lg29kl5hj0IiuURAM8sRUYBN.f7TWHZeEYHFLZaokpqG', 2, '2024-09-23 22:03:08', '2024-09-23 22:07:24'),
+(29, 'hoahongden19032004@gmail.com', '$2y$12$RVqLqTZPf7DeRgl0H3gTuOIPGKwukKINOD0nyKQ65d9NSqANvVTLq', 3, '2024-09-26 23:58:23', '2024-09-26 23:58:23'),
+(30, 'vantamtran1233@gmail.com', '$2y$12$TumXPVpWUG7QFHzl0vv3v.jI2gY2qd62qS22UxZ06RPhRelgSgWDO', 3, '2024-09-27 00:02:20', '2024-09-27 00:02:20');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `bookingdetails`
+--
+ALTER TABLE `bookingdetails`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `bookingdetails_bookingid_foreign` (`BookingID`);
+
+--
+-- Indexes for table `bookings`
+--
+ALTER TABLE `bookings`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `bookings_customerid_foreign` (`CustomerID`),
+  ADD KEY `bookings_roomid_foreign` (`RoomID`);
+
+--
+-- Indexes for table `customers`
+--
+ALTER TABLE `customers`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `customers_userid_foreign` (`UserID`);
+
+--
+-- Indexes for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `invoices`
+--
+ALTER TABLE `invoices`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `invoices_bookingid_foreign` (`BookingID`);
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_reset_tokens`
+--
+ALTER TABLE `password_reset_tokens`
+  ADD PRIMARY KEY (`email`);
+
+--
+-- Indexes for table `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+  ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
+
+--
+-- Indexes for table `positions`
+--
+ALTER TABLE `positions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `rooms`
+--
+ALTER TABLE `rooms`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `rooms_roomnumber_unique` (`RoomNumber`),
+  ADD KEY `rooms_roomtypeid_foreign` (`RoomTypeID`);
+
+--
+-- Indexes for table `roomtypes`
+--
+ALTER TABLE `roomtypes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `services`
+--
+ALTER TABLE `services`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `services_bookingid_foreign` (`BookingID`);
+
+--
+-- Indexes for table `staff`
+--
+ALTER TABLE `staff`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `UserID` (`UserID`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `bookingdetails`
+--
+ALTER TABLE `bookingdetails`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `bookings`
+--
+ALTER TABLE `bookings`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `customers`
+--
+ALTER TABLE `customers`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `invoices`
+--
+ALTER TABLE `invoices`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+
+--
+-- AUTO_INCREMENT for table `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `positions`
+--
+ALTER TABLE `positions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `rooms`
+--
+ALTER TABLE `rooms`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `roomtypes`
+--
+ALTER TABLE `roomtypes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `services`
+--
+ALTER TABLE `services`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `staff`
+--
+ALTER TABLE `staff`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `bookingdetails`
+--
+ALTER TABLE `bookingdetails`
+  ADD CONSTRAINT `bookingdetails_bookingid_foreign` FOREIGN KEY (`BookingID`) REFERENCES `bookings` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `bookings`
+--
+ALTER TABLE `bookings`
+  ADD CONSTRAINT `bookings_customerid_foreign` FOREIGN KEY (`CustomerID`) REFERENCES `customers` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `bookings_roomid_foreign` FOREIGN KEY (`RoomID`) REFERENCES `rooms` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `customers`
+--
+ALTER TABLE `customers`
+  ADD CONSTRAINT `customers_userid_foreign` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `invoices`
+--
+ALTER TABLE `invoices`
+  ADD CONSTRAINT `invoices_bookingid_foreign` FOREIGN KEY (`BookingID`) REFERENCES `bookings` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `rooms`
+--
+ALTER TABLE `rooms`
+  ADD CONSTRAINT `rooms_roomtypeid_foreign` FOREIGN KEY (`RoomTypeID`) REFERENCES `roomtypes` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `services`
+--
+ALTER TABLE `services`
+  ADD CONSTRAINT `services_bookingid_foreign` FOREIGN KEY (`BookingID`) REFERENCES `bookings` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `staff`
+--
+ALTER TABLE `staff`
+  ADD CONSTRAINT `staff_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
