@@ -43,7 +43,7 @@ public function store(Request $request)
  // Không cần phải tạo Validator thủ công, Laravel đã thực hiện điều này cho bạn
  if ($request->hasFile('image')) {
     $file = $request->file('image');
-    $name = time() . '_' . $file->getClientOriginalName();
+    $name = $file->getClientOriginalName();
     $destinationPath = public_path('/images/room');
     $file->move($destinationPath, $name);
 } else {
@@ -84,7 +84,7 @@ public function update(Request $request, $id)
     // Xử lý upload hình ảnh mới (nếu có)
     if ($request->hasFile('image')) {
         $file = $request->file('image');
-        $filename = time() . '_' . $file->getClientOriginalName();
+        $filename =$file->getClientOriginalName();
         $path = $file->storeAs('public/images/rooms', $filename);
         $room->image = $filename;
     }

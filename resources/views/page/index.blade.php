@@ -1,4 +1,5 @@
 @extends('layout.master')
+
 @section('content')	
 <section class="banner">
 
@@ -60,7 +61,7 @@
                     </select>
                 </div>
                 <div class="button_submit">
-                    <button>Đặt ph&#242;ng</button>
+                    <button>Đặt phòng</button>
                 </div>
             </form>
         </div>

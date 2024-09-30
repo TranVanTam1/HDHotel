@@ -812,7 +812,7 @@ h2.title {
     .count_list-item span:nth-child(1) {
         font-size: 72px;
     }
-    /* css cho pháº§n news */
+    /* css cho phần news */
     
     .news_text {
         text-align: center;
@@ -1299,7 +1299,7 @@ h2.title {
 		-webkit-box-orient: vertical;
 		-webkit-line-clamp: 4;
 	}
-	.contact_address li:hover a { 
+	.contact_address li:hover a { //890
     color: rgb(230, 227, 227);
 	}
 .carousel_lod--list img{

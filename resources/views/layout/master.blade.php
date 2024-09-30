@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,17 +13,22 @@
     <meta name="keywords">
     <meta name="description" content="Luxe Hotel">
 	<meta name="robots" content="noindex">
-    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" href="/images/img/logohotel2.png" style="border-radius:50%;">
     <link rel="stylesheet" href="https://fontawesome.com/icons/html5?f=brands&s=solid">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 
     <!--Link css page index-->
     <link href="/Content/css/main.css" rel="stylesheet" />
+    <link href="/Content/css/app.css" rel="stylesheet" />
     <link href="/Content/css/responsive.css" rel="stylesheet" />
     <link href="/Content/css/room.css" rel="stylesheet" />
    <link rel="stylesheet" href="/Content/css/all.min.css"/>
+   <link href="/Content/Css/page-about.css" rel="stylesheet" />
+   <link href="/Plugins/Validate/jquery-validation-1.13.1/jquery-validation.css" rel="stylesheet" />
     <style>
-        
+      
     </style>
     
 
@@ -37,7 +41,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="/Content/css/css2?family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
 
 
     <!-- Vendor CSS Files cdn -->
@@ -51,6 +55,7 @@
     <link rel="stylesheet" href="/Content/css/slick.css">
     <link rel="stylesheet" href="/Content/css/slick-theme.css">
     <link rel="stylesheet" href="/Content/css/daterangepicker.css">
+    <link href="/Content/Css/room-single.css" rel="stylesheet" />
 
 
 
@@ -63,25 +68,7 @@
 
 </style>
 
-	<div class="contacthotel"> 
-		<div class="container">
-			<div class="topcontact">
-				<div class="back">
-					 <a href="https://webhotel.vn/"> &#10554; Về trang chủ </a>
-				</div>
-				<div class="order">
-					<a href="https://webhotel.vn/Dang-ky?MaWebSite=M%E1%BA%ABu%20146%20-%20Luxe%20Hotel"> 
-						Sử dụng giao diện này
-					</a>
-					<a href="#" class="closetop">
-						&#10005;
-					</a>
-				</div>
-			
-			</div>
-			
-		</div>
-	</div>
+	
    <script>
 	$(".closetop").click(function(){
 		$(".contacthotel").hide();

@@ -107,6 +107,54 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li> 
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Vai Trò <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{ route('roles.index')}}">Danh sách các vai trò</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('roles.create')}}">Thêm mới 1 vai trò</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Vị Trí <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{ route('positions.index')}}">Danh sách các vị trí</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('positions.create')}}">Thêm mới 1 vị trí</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Người dùng <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{ route('users.index')}}">Danh sách Người dùng </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('users.create')}}">Thêm mới Người dùng </a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Nhân viên<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{ route('staffs.index')}}">Danh sách Nhân viên</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('staffs.create')}}">Thêm mới nhân viên</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

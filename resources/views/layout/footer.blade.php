@@ -4,10 +4,10 @@
             <div class="row footer_row">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div class="footer_logo" style="margin: 0 0 15px 0;">
-                        <img src="/images/img/logo-dark.png" alt="No picture">
+                        <img src="/images/img/logohotel2.png" alt="No picture" style="margin-top: -46px">
                     </div>
                     <div class="footer_info" style="font-size: 13px">
-                        <p>http://luxehotel.webhotel.vn/</p>
+                        <!-- <p>http://luxehotel.webhotel.vn/</p> -->
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
@@ -15,16 +15,16 @@
                     <div class="footer_contact">
                         <ul class="contact_address">
                             <li class="contact_address-item">
-                                <i class="fas fa-map-marker-alt"></i> Số 147 Mai Dịch, Cầu Giấy, H&#224; Nội
+                                <i class="fas fa-map-marker-alt"></i> Số 04 Lê Sát, Hải Châu, Đà Nẵng.
                             </li>
                             <li class="contact_address-item">
                                 <a href="#">
-                                    <i class="fas fa-phone-alt"></i> 0242 242 0777
+                                    <i class="fas fa-phone-alt"></i> 0332541965
                                 </a>
                             </li>
                             <li class="contact_address-item">
                                 <a href="#">
-                                    <i class="far fa-envelope"></i> info@webhotel.vn
+                                    <i class="far fa-envelope"></i> HoangDunghotel.vn
                                 </a>
                             </li>
                         </ul>
